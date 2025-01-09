@@ -1,0 +1,16 @@
+{
+  "prettier.trailingComma": "all",
+  "prettier.singleQuote": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "sonarlint.connectedMode.project": {
+    "connectionId": "SonarCloud",
+    "projectKey": "samuel-gomez_react-starter-design-system"
+  },
+  "[feature]": {
+    "editor.defaultFormatter": "alexkrechik.cucumberautocomplete"
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  }
+}

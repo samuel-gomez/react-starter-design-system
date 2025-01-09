@@ -1,0 +1,14 @@
+import Layout, { type TLayoutPage } from 'Layout';
+import Galleries from './Galleries';
+import { TITLE, TITLE_BAR } from './constants';
+
+export type THome = TLayoutPage;
+
+const Home = ({ titleBar = TITLE_BAR, title = TITLE }: THome) => (
+  <Layout propsTitle={{ title: titleBar }}>
+    <h2 className="af-title--content">{title}</h2>
+    <Galleries />
+  </Layout>
+);
+
+export default Home;
