@@ -1,9 +1,7 @@
-import { useOidcAccessToken } from '@axa-fr/react-oidc';
 import { type QueryKey } from '@tanstack/react-query';
 import fetch from 'cross-fetch';
 import { API_URL, STATUS_API, STATUS_HTTP_MESSAGES } from 'shared/constants';
 import { isEmptyOrNull, mergeObj } from 'shared/helpers';
-import { useOidcAccessTokenMock } from './constants';
 
 type TsetResponseError = {
   response: {
@@ -119,13 +117,3 @@ export const setFetchCustom =
     const response = await fetchFn(url, config).catch(catchErrorServerFn);
     return buildResponse(response, config);
   };
-
-export const getAccessToken = ({
-  isEnabled,
-  useOidcAccessTokenFn = useOidcAccessToken,
-  useOidcAccessTokenMockFn = useOidcAccessTokenMock,
-}: {
-  isEnabled?: boolean;
-  useOidcAccessTokenFn?: typeof useOidcAccessToken;
-  useOidcAccessTokenMockFn?: typeof useOidcAccessTokenMock;
-}) => (isEnabled ? useOidcAccessTokenFn : useOidcAccessTokenMockFn);

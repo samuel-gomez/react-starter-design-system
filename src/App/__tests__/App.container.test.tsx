@@ -32,13 +32,6 @@ describe('AppContainer', () => {
             'Content-type': 'application/json; charset=UTF-8',
           },
         },
-        oidc: {
-          isEnabled: true,
-          client_id: 'interactive.public',
-          redirect_uri: 'http://localhost:3000/authentication/callback',
-          scope: 'openid profile email api offline_access',
-          authority: 'https://demo.duendesoftware.com',
-        },
       },
     });
     render(<AppContainer EnvironmentContextObj={EnvironmentContextLoaded} />);

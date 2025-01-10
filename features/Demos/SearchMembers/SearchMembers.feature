@@ -3,8 +3,8 @@ Feature: Téléchargement de membres
 
   @RG1
   Scenario: Affichage du moteur de recherche
-    Given Je suis un utilisateur connu et connecté avec le profil "Admin"
-    When J’accède à la page des téléchargements
+    Given J’accède à la page des téléchargements
+    When Je suis un utilisateur non connecté
     Then un titre "Recherche par Nom" est visible
     And un champ texte "name" est visible avec la valeur "", un placeholder "John Doe"
     And un label "Nom du membre" est visible

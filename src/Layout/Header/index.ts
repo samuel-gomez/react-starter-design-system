@@ -1,1 +1,1 @@
-export { default } from './Header.container';
+export { HeaderApp as default } from './Header';

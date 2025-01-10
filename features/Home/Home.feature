@@ -36,5 +36,4 @@ Feature: Page d'accueil
       | React Hook Form | https://react-hook-form.com/                         |
       | React Query     | https://tanstack.com/query/v4                        |
       | SonarQube       | https://www.sonarqube.org/                           |
-      | React OIDC      | https://github.com/AxaGuilDEv/react-oidc             |
 

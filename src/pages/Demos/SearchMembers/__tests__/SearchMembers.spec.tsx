@@ -3,7 +3,7 @@ import { render, screen } from 'shared/testsUtils/customRender';
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import { emptyFunction } from 'shared/testsUtils';
 import {
-  JeSuisUnUtilisateurConnuEtConnecteAvecleProfil,
+  JeSuisUnUtilisateurNonConnecte,
   UnAideALaSaisieEstVisible,
   UnBoutonEstDesactive,
   UnChampTextEstVisibleAvecLaValeurEtUnPlaceholder,
@@ -15,8 +15,6 @@ import SearchMembers from '..';
 const feature = loadFeature('features/Demos/SearchMembers/SearchMembers.feature');
 
 defineFeature(feature, test => {
-  let role: string;
-
   const defaultProps = {
     distributors: [],
     anomaly: { distributors: null },
@@ -25,14 +23,12 @@ defineFeature(feature, test => {
   };
 
   test('Affichage du moteur de recherche', ({ given, when, then, and }) => {
-    JeSuisUnUtilisateurConnuEtConnecteAvecleProfil(given, (roleMock: string) => {
-      role = roleMock;
+    given('J’accède à la page des téléchargements', async () => {
+      render(<SearchMembers {...defaultProps} />);
+      expect(await screen.findByText(/Profil/)).toBeInTheDocument();
     });
 
-    when('J’accède à la page des téléchargements', async () => {
-      render(<SearchMembers {...defaultProps} />, {}, { role });
-      expect(await screen.findByText(/Samuel/)).toBeInTheDocument();
-    });
+    JeSuisUnUtilisateurNonConnecte(when);
 
     UnTitreEstVisible(then, 2);
     UnChampTextEstVisibleAvecLaValeurEtUnPlaceholder(and);

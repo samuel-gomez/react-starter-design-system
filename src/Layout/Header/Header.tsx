@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import Resilience from 'shared/components/Resilience';
 import Skeleton from 'shared/components/Skeleton';
 import type { Tanomaly } from 'shared/types.d';
+import { SUBTITLE, TITLE } from './constants';
 import './Header.scss';
 
 type THeaderInfo = {
@@ -14,8 +15,8 @@ type THeaderInfo = {
 export const HeaderInfo = ({ isLoaded, children }: THeaderInfo) => (isLoaded ? <>{children}</> : <Skeleton classModifier="info" />);
 
 type THeaderApp = {
-  title: string;
-  subtitle: string;
+  title?: string;
+  subtitle?: string;
   infos?: {
     word: string;
     definition: string;
@@ -27,11 +28,11 @@ type THeaderApp = {
   fullScreen?: boolean;
 };
 
-export const HeaderApp = ({
+const HeaderApp = ({
   fullScreen,
   infos,
-  title,
-  subtitle,
+  title = TITLE,
+  subtitle = SUBTITLE,
   link = '#',
   authName = 'Non Connecté',
   authRole = 'Profil',
@@ -50,4 +51,4 @@ export const HeaderApp = ({
   </Header>
 );
 
-export default HeaderApp;
+export { HeaderApp };

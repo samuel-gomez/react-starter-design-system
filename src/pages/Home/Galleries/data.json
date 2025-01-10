@@ -127,11 +127,6 @@
         "titleItem": "SonarQube",
         "linkItem": "https://www.sonarqube.org/",
         "imageItem": "sonarqube"
-      },
-      {
-        "titleItem": "React OIDC",
-        "linkItem": "https://github.com/AxaGuilDEv/react-oidc",
-        "imageItem": "openid"
       }
     ]
   }

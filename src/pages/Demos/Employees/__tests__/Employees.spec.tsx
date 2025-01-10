@@ -1,7 +1,7 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import { render, screen } from 'shared/testsUtils/customRender';
 import {
-  JeSuisUnUtilisateurConnuEtConnecteAvecleProfil,
+  JeSuisUnUtilisateurNonConnecte,
   LaPageContientUnTableau,
   LeTableauContientLesLignesCorrespondantAuxDonneesRecues,
   LeTableauPresenteDesEntetesDeColonnesDansLOrdreSuivant,
@@ -12,17 +12,13 @@ const feature = loadFeature('features/Demos/Employees/Employees.feature');
 const tableItemsType = 'collaborateurs';
 
 defineFeature(feature, test => {
-  let role: string;
-
   test('Affichage de la liste des collaborateurs', ({ given, when, then, and }) => {
-    JeSuisUnUtilisateurConnuEtConnecteAvecleProfil(given, (roleMock: string) => {
-      role = roleMock;
+    given("J'accède à la page des collaborateurs", async () => {
+      render(<Employees />);
+      expect(await screen.findByText(/Profil/)).toBeInTheDocument();
     });
 
-    when("J'accède à la page des collaborateurs", async () => {
-      render(<Employees />, {}, { role });
-      expect(await screen.findByText(/Samuel/)).toBeInTheDocument();
-    });
+    JeSuisUnUtilisateurNonConnecte(when);
 
     LaPageContientUnTableau(then, 'la page contient un tableau répertoriant la liste des collaborateurs', tableItemsType);
 

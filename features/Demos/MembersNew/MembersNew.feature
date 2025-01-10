@@ -2,8 +2,8 @@ Feature: Ajout de membres
 
   @RG1
   Scenario: Validation du formulaire d'ajout de membre en erreur
-    Given Je suis un utilisateur connu et connecté avec le profil "Admin"
-    And J'accède à la page ajout de membre
+    Given J'accède à la page ajout de membre
+    When Je suis un utilisateur non connecté
     And un titre "Création d'un membre" est visible
     And un titre "Ajouter un membre" est visible
     And Un champ liste déroulante "Civilité" est visible
@@ -18,8 +18,8 @@ Feature: Ajout de membres
 
   @RG2
   Scenario: Saisie valide du formulaire d'ajout de membre
-    Given Je suis un utilisateur connu et connecté avec le profil "Admin"
-    When J'accède à la page ajout de membre
+    Given J'accède à la page ajout de membre
+    When Je suis un utilisateur non connecté
     And Je sélectionne la valeur "Mme" sur le champ "Civilité"
     And je saisie "Samuel" dans le champ "Prénom"
     And un champ texte "Prénom" est visible avec la valeur "Samuel"
@@ -31,8 +31,8 @@ Feature: Ajout de membres
 
   @RG3
   Scenario: Erreur serveur (500)
-    Given Je suis un utilisateur connu et connecté avec le profil "Admin"
-    When J'accède à la page ajout de membre
+    Given J'accède à la page ajout de membre
+    When Je suis un utilisateur non connecté
     And Je sélectionne la valeur "Mme" sur le champ "Civilité"
     And je saisie "500" dans le champ "Prénom"
     And un champ texte "Prénom" est visible avec la valeur "500"

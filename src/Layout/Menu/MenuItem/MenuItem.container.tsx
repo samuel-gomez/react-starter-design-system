@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import isEmpty from 'lodash/isEmpty';
 import { type AriaAttributes } from 'react';
-import Authorize from 'shared/components/Authorize';
 import { MenuItem } from './MenuItem';
 import type { TMenuItemBase, TMenuItemEnhanced } from './MenuItem.d';
 
@@ -32,11 +31,9 @@ const MenuItemEnhanced = ({
   const newUrl = !isEmpty(basePath) && !isEmpty(url) ? `${basePath}/${url}` : url;
 
   return (
-    <Authorize authorized={authorized}>
-      <MenuItem {...props} basePath={basePath} createMenuFn={createMenuFn} url={newUrl} label={label} classModifier={newClassModifier} {...ariaProps}>
-        {children}
-      </MenuItem>
-    </Authorize>
+    <MenuItem {...props} basePath={basePath} createMenuFn={createMenuFn} url={newUrl} label={label} classModifier={newClassModifier} {...ariaProps}>
+      {children}
+    </MenuItem>
   );
 };
 

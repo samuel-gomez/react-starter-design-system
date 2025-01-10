@@ -3,7 +3,6 @@ import EnvironmentProvider from 'App/EnvironmentProvider';
 import FetchProvider from 'App/FetchProvider';
 import NotificationProvider from 'App/NotificationProvider';
 import QueryProvider from 'App/QueryProvider';
-import UserProvider from 'App/UserProvider';
 import { type ReactElement, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import MOCK_API_URL from './constants';
@@ -14,28 +13,19 @@ type TMockProvider = {
 
 const MockProviders =
   ({
-    role = '',
-    isEnabled = true,
     route = '/',
-    oidcUser = { member_of: [`CN=${role}`], name: 'Samuel Gomez' },
-    accessToken = 'accessToken',
     queryData,
     headers = {
       'Content-type': 'application/json; charset=UTF-8',
     },
   }: TMockProvider) =>
   ({ children }: { children: ReactNode }) => {
-    const getAccessTokenFn = vi.fn().mockReturnValue(() => ({ accessToken }));
-    const getUserInfosFn = vi.fn().mockReturnValueOnce(() => ({ oidcUser }));
     const useEnvFn = vi.fn().mockReturnValueOnce({
       envState: {
         environment: {
           apiUrl: MOCK_API_URL,
           fetchConfig: {
             headers,
-          },
-          oidc: {
-            isEnabled,
           },
         },
       },
@@ -48,15 +38,13 @@ const MockProviders =
 
     return (
       <EnvironmentProvider useEnvFn={useEnvFn}>
-        <UserProvider getUserInfosFn={getUserInfosFn}>
-          <FetchProvider getAccessTokenFn={getAccessTokenFn}>
-            <QueryProvider queriesOptions={queriesOptions}>
-              <NotificationProvider>
-                <MemoryRouter initialEntries={[`${route}`]}>{children}</MemoryRouter>
-              </NotificationProvider>
-            </QueryProvider>
-          </FetchProvider>
-        </UserProvider>
+        <FetchProvider>
+          <QueryProvider queriesOptions={queriesOptions}>
+            <NotificationProvider>
+              <MemoryRouter initialEntries={[`${route}`]}>{children}</MemoryRouter>
+            </NotificationProvider>
+          </QueryProvider>
+        </FetchProvider>
       </EnvironmentProvider>
     );
   };

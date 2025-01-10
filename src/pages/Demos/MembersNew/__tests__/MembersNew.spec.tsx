@@ -5,7 +5,7 @@ import {
   JeCliqueSurLeBouton,
   JeSaisieDansLeChamp,
   JeSelectionneUneValeurSurleChamp,
-  JeSuisUnUtilisateurConnuEtConnecteAvecleProfil,
+  JeSuisUnUtilisateurNonConnecte,
   UnBoutonEstVisible,
   UnChampListeDeroulanteEstVisible,
   UnChampTextEstVisible,
@@ -20,17 +20,13 @@ import MembersNew from '..';
 const feature = loadFeature('features/Demos/MembersNew/MembersNew.feature');
 
 defineFeature(feature, test => {
-  let role: string;
-
   test("Validation du formulaire d'ajout de membre en erreur", ({ given, when, then, and }) => {
-    JeSuisUnUtilisateurConnuEtConnecteAvecleProfil(given, (roleMock: string) => {
-      role = roleMock;
+    given("J'accède à la page ajout de membre", async () => {
+      render(<MembersNew />);
+      expect(await screen.findByText(/Profil/)).toBeInTheDocument();
     });
 
-    and("J'accède à la page ajout de membre", async () => {
-      render(<MembersNew />, {}, { role });
-      expect(await screen.findByText(/Samuel/)).toBeInTheDocument();
-    });
+    JeSuisUnUtilisateurNonConnecte(when);
 
     UnTitreEstVisible(and);
     UnTitreEstVisible(and, 2);
@@ -46,14 +42,11 @@ defineFeature(feature, test => {
   });
 
   test("Saisie valide du formulaire d'ajout de membre", ({ given, when, and }) => {
-    JeSuisUnUtilisateurConnuEtConnecteAvecleProfil(given, (roleMock: string) => {
-      role = roleMock;
+    given("J'accède à la page ajout de membre", async () => {
+      render(<MembersNew />);
+      expect(await screen.findByText(/Profil/)).toBeInTheDocument();
     });
-
-    when("J'accède à la page ajout de membre", async () => {
-      render(<MembersNew />, {}, { role });
-      expect(await screen.findByText(/Samuel/)).toBeInTheDocument();
-    });
+    JeSuisUnUtilisateurNonConnecte(when);
 
     JeSelectionneUneValeurSurleChamp(and);
     JeSaisieDansLeChamp(and);
@@ -65,16 +58,12 @@ defineFeature(feature, test => {
   });
 
   test('Erreur serveur (500)', ({ given, when, and }) => {
-    JeSuisUnUtilisateurConnuEtConnecteAvecleProfil(given, (roleMock: string) => {
-      role = roleMock;
+    given("J'accède à la page ajout de membre", async () => {
       serverUsePost({ route: 'members/add', code: 500 });
+      render(<MembersNew />);
+      expect(await screen.findByText(/Profil/)).toBeInTheDocument();
     });
-
-    when("J'accède à la page ajout de membre", async () => {
-      render(<MembersNew />, {}, { role });
-      expect(await screen.findByText(/Samuel/)).toBeInTheDocument();
-    });
-
+    JeSuisUnUtilisateurNonConnecte(when);
     JeSelectionneUneValeurSurleChamp(and);
     JeSaisieDansLeChamp(and);
     UnChampTextEstVisibleAvecLaValeur(and);
