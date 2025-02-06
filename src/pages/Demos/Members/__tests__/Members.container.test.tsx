@@ -37,7 +37,7 @@ describe('<MembersContainer />', () => {
         ...returnValue,
         loaderMode: 'none',
       },
-      {},
+      undefined,
     );
   });
 });

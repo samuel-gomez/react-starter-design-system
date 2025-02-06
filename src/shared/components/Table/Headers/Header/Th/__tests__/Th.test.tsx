@@ -25,7 +25,7 @@ describe('ThContainer', () => {
         children: 'child th',
         scope: 'row',
       },
-      {},
+      undefined,
     );
   });
 
@@ -45,7 +45,7 @@ describe('ThContainer', () => {
         children: 'child th',
         onSort,
       },
-      {},
+      undefined,
     );
   });
 });

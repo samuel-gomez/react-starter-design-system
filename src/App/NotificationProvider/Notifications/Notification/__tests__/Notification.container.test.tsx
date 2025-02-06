@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { emptyFunction } from 'shared/testsUtils';
-import NotificationContainer from '../Notification.container';
 import { ALERT_TYPE } from '../../constants';
+import NotificationContainer from '../Notification.container';
 
 describe('NotificationContainer', () => {
   const NotificationCmpt = vi.fn();
@@ -27,7 +27,7 @@ describe('NotificationContainer', () => {
         label: 'title',
         onClose: emptyFunction,
       },
-      {},
+      undefined,
     );
   });
 
@@ -49,7 +49,7 @@ describe('NotificationContainer', () => {
         label: 'title',
         onClose: emptyFunction,
       },
-      {},
+      undefined,
     );
   });
 });

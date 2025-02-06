@@ -40,7 +40,7 @@ describe('TableContainer', () => {
         items,
         'aria-label': `Tableau de ${itemsType}`,
       },
-      {},
+      undefined,
     );
   });
 
@@ -54,7 +54,7 @@ describe('TableContainer', () => {
         items,
         'aria-label': `Tableau de ${itemsType}`,
       },
-      {},
+      undefined,
     );
   });
 
@@ -85,7 +85,7 @@ describe('TableContainer', () => {
         items,
         'aria-label': `Tableau de ${itemsType}`,
       },
-      {},
+      undefined,
     );
   });
 

@@ -20,7 +20,7 @@ describe('NotificationsContainer', () => {
         deleteNotification: emptyFunction,
         notifications: [],
       },
-      {},
+      undefined,
     );
   });
 
@@ -46,7 +46,7 @@ describe('NotificationsContainer', () => {
           },
         ],
       },
-      {},
+      undefined,
     );
   });
 });

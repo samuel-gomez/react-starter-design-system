@@ -5,7 +5,9 @@ const ResiliencePageCmpt = vi.fn();
 
 const defaultProps = {
   ResiliencePageCmpt,
+  title: 'test title',
 };
+
 describe('<ResiliencePageContainer />', () => {
   it.each`
     classModifier | expectedClassModifier
@@ -14,13 +16,14 @@ describe('<ResiliencePageContainer />', () => {
     ${'sam'}      | ${'resilience-page sam'}
   `(
     'Should render view with expectedClassModifier: $expectedClassModifier when classModifier: $classModifier',
-    ({ expectedClassModifier, ...rest }) => {
-      render(<ResiliencePageContainer {...defaultProps} {...rest} />);
+    ({ expectedClassModifier, classModifier }) => {
+      render(<ResiliencePageContainer {...defaultProps} classModifier={classModifier} />);
       expect(ResiliencePageCmpt).toHaveBeenCalledWith(
         {
           classModifier: expectedClassModifier,
+          title: 'test title',
         },
-        {},
+        undefined,
       );
     },
   );

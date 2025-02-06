@@ -36,7 +36,7 @@ describe('SearchFormContainer', () => {
         onSubmit: onSubmitSearchForm,
         ...useFormFnMockReturn,
       },
-      {},
+      undefined,
     );
   });
 });

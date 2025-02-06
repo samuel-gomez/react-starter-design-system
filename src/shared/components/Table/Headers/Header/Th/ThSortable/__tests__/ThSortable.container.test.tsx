@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { ASCENDING } from 'shared/components/Table/constants';
-import ThSortableContainer, { toggleOrder, toggleSorting, setOrder, setClassModifierActive, setSort } from '../ThSortable.container';
+import ThSortableContainer, { setClassModifierActive, setOrder, setSort, toggleOrder, toggleSorting } from '../ThSortable.container';
 
 describe('setClassModifierActive', () => {
   it('Should return "classModifier" when setClassModifierActive have been called without props', () => {
@@ -117,7 +117,7 @@ describe('<ThSortableContainer />', () => {
           order: expectedOrder,
           sort,
         },
-        {},
+        undefined,
       );
       expect(setSortFn).toHaveBeenCalledWith({ field, sorting: expedtedSorting, onSort });
       expect(setClassModifierActiveFn).toHaveBeenCalledWith({ classModifier, isActive });

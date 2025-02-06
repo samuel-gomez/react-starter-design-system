@@ -40,7 +40,7 @@ describe('LineContainer', () => {
           },
         ],
       },
-      {},
+      undefined,
     );
   });
 });

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import withClassNameModifier from './WithClassNameModifier';
+import withClassNameModifier, { type TwithClassNameModifier } from './WithClassNameModifier';
 
-const ExampleComponent = ({ className }: { className?: string }) => (
+const ExampleComponent = ({ className }: { className?: string } & TwithClassNameModifier) => (
   <div role="alert" className={className}>
     Hello
   </div>

@@ -1,5 +1,5 @@
 import { MODES } from 'shared/components/Loader';
-import { screen, render } from 'shared/testsUtils';
+import { render, screen } from 'shared/testsUtils';
 import SearchMembersContainer from '../SearchMembers.container';
 
 const useSearchMembersFn = vi.fn();
@@ -28,7 +28,7 @@ describe('<SearchMembersContainer/>', () => {
     render(<SearchMembersContainer {...defaultProps} />);
     expect(useFormSearchMembersFn).toHaveBeenCalledWith({});
     expect(useSearchMembersFn).toHaveBeenCalledWith({ stateFormSearchMembers });
-    expect(SearchMembersCmpt).toHaveBeenCalledWith({ submitFormSearchMembers, searchMembers: [], loaderMode: MODES.none, anomaly: null }, {});
+    expect(SearchMembersCmpt).toHaveBeenCalledWith({ submitFormSearchMembers, searchMembers: [], loaderMode: MODES.none, anomaly: null }, undefined);
   });
 
   const searchMembers = [
@@ -49,7 +49,7 @@ describe('<SearchMembersContainer/>', () => {
     render(<SearchMembersContainer {...defaultProps} />);
     expect(useFormSearchMembersFn).toHaveBeenCalledWith({});
     expect(useSearchMembersFn).toHaveBeenCalledWith({ stateFormSearchMembers });
-    expect(SearchMembersCmpt).toHaveBeenCalledWith({ submitFormSearchMembers, searchMembers, loaderMode: MODES.none, anomaly: null }, {});
+    expect(SearchMembersCmpt).toHaveBeenCalledWith({ submitFormSearchMembers, searchMembers, loaderMode: MODES.none, anomaly: null }, undefined);
   });
 
   it('Should render SearchMembersContainer with search form', () => {
