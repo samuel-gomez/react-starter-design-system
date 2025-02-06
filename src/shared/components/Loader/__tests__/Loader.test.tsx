@@ -24,7 +24,9 @@ describe('<LoaderContainer />', () => {
       if (mode === 'none') {
         expect(screen.getByText('child component')).toBeInTheDocument();
       } else {
-        expect(screen.getByRole('alert')).toBeInTheDocument();
+        const Loader = screen.getByRole('alert');
+        expect(Loader).toBeInTheDocument();
+        expect(Loader).toHaveClass(expectedClass);
         expect(screen.getByLabelText(expectedMessage));
       }
     },

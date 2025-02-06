@@ -1,6 +1,13 @@
 import { setLoaderMode } from 'shared/components/Loader';
-import SearchMembers from './SearchMembers';
-import { useSearchMembers, useFormSearchMembers } from './SearchMembers.hook';
+import SearchMembers, { type TSearchMembers } from './SearchMembers';
+import { useFormSearchMembers, useSearchMembers } from './SearchMembers.hook';
+
+type SearchMembersEnhancedProps = {
+  useSearchMembersFn?: typeof useSearchMembers;
+  setLoaderModeFn?: typeof setLoaderMode;
+  useFormSearchMembersFn?: typeof useFormSearchMembers;
+  SearchMembersCmpt?: typeof SearchMembers;
+} & Partial<TSearchMembers>;
 
 const SearchMembersEnhanced = ({
   useSearchMembersFn = useSearchMembers,
@@ -8,7 +15,7 @@ const SearchMembersEnhanced = ({
   useFormSearchMembersFn = useFormSearchMembers,
   SearchMembersCmpt = SearchMembers,
   ...rest
-}) => {
+}: SearchMembersEnhancedProps) => {
   const { submitFormSearchMembers, stateFormSearchMembers } = useFormSearchMembersFn({});
   const { anomaly, isLoading, searchMembers } = useSearchMembersFn({ stateFormSearchMembers });
 

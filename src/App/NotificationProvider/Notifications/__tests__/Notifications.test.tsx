@@ -29,6 +29,6 @@ describe('Notifications', () => {
     const notifications = [{ id: 'id', label: 'title' }];
     render(<Notifications {...defaultProps} notifications={notifications} deleteNotification={deleteNotificationMock} />);
     await userEvent.click(screen.getByRole('button'));
-    expect(deleteNotificationMock).toBeCalledWith('id');
+    expect(deleteNotificationMock).toHaveBeenCalledWith('id');
   });
 });

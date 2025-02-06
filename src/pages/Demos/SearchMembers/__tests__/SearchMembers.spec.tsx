@@ -1,6 +1,7 @@
 import { render, screen } from 'shared/testsUtils/customRender';
 
 import { defineFeature, loadFeature } from 'jest-cucumber';
+import { MODES } from 'shared/components/Loader';
 import { emptyFunction } from 'shared/testsUtils';
 import {
   JeSuisUnUtilisateurNonConnecte,
@@ -17,8 +18,8 @@ const feature = loadFeature('features/Demos/SearchMembers/SearchMembers.feature'
 defineFeature(feature, test => {
   const defaultProps = {
     distributors: [],
-    anomaly: { distributors: null },
-    loaderMode: 'none',
+    anomaly: { distributors: null, label: '' },
+    loaderMode: MODES.none,
     submitSearch: emptyFunction,
   };
 

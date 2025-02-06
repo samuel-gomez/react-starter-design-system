@@ -39,7 +39,7 @@ describe('DownloadLinkContainer', () => {
       />,
     );
 
-    expect(setLoaderModeFnMock).toBeCalledWith({ isLoading: false });
-    expect(useDownloadFnMock).toBeCalledWith({ path: 'download/id', hasSubmit: false });
+    expect(setLoaderModeFnMock).toHaveBeenCalledWith({ isLoading: false });
+    expect(useDownloadFnMock).toHaveBeenCalledWith({ path: 'download/id', hasSubmit: false });
   });
 });

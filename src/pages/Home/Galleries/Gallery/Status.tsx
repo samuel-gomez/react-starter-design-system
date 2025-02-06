@@ -1,6 +1,6 @@
 import STATUS from './constants';
 
-const Status = ({ status = STATUS }) => (
+const Status = ({ status = STATUS }: { status?: typeof STATUS }) => (
   <menu className="af-status-badge">
     {status.map(({ href, src, alt }) => (
       <a className="af-status-badge__link" key={href} href={href}>

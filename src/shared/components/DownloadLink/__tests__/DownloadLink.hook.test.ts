@@ -1,6 +1,6 @@
-import { renderHook, act, customRenderHook } from 'shared/testsUtils';
+import { act, customRenderHook, renderHook } from 'shared/testsUtils';
 import { SUCCESS_DOWNLOAD_MESSAGE } from '../constants';
-import { useDownload, useSubmitDownload, onSuccess, onError, useDownloadFile } from '../DownloadLink.hook';
+import { onError, onSuccess, useDownload, useDownloadFile, useSubmitDownload } from '../DownloadLink.hook';
 
 describe('useSubmitDownload', () => {
   it('Should stateSubmitDownload to be false when clearSubmitDownload called', () => {
@@ -63,12 +63,12 @@ describe('useDownloadFile', () => {
   };
   it('Should call downloadjs and onSuccess when useDownloadFile called with isSuccess: true, hasSubmit: true, fileName: filename, isLoading: false and have downloadFile', () => {
     customRenderHook()(() => useDownloadFile({ ...defaultProps }));
-    expect(downloadjsMock).toBeCalledWith(defaultProps.downloadFile, defaultProps.fileName, 'text/csv');
-    expect(onSuccessMock).toBeCalled();
+    expect(downloadjsMock).toHaveBeenCalledWith(defaultProps.downloadFile, defaultProps.fileName, 'text/csv');
+    expect(onSuccessMock).toHaveBeenCalled();
   });
   it('Should return initial state when useDownloadFile called with isError: true, hasSubmit: true', () => {
     customRenderHook()(() => useDownloadFile({ ...defaultProps, isError: true, error: { label: 'erreur' } }));
-    expect(onErrorMock).toBeCalled();
+    expect(onErrorMock).toHaveBeenCalled();
   });
 });
 
@@ -77,8 +77,8 @@ describe('onSuccess', () => {
     const clearSubmitDownloadMock = vi.fn();
     const addNotificationMock = vi.fn();
     onSuccess(clearSubmitDownloadMock, addNotificationMock);
-    expect(clearSubmitDownloadMock).toBeCalled();
-    expect(addNotificationMock).toBeCalledWith({
+    expect(clearSubmitDownloadMock).toHaveBeenCalled();
+    expect(addNotificationMock).toHaveBeenCalledWith({
       label: SUCCESS_DOWNLOAD_MESSAGE,
       id: 'success-alert-id',
       type: 'success',
@@ -93,8 +93,8 @@ describe('onError', () => {
   it('Should called addNotificationMock with name error', () => {
     const error = { label: 'test' };
     onError(clearSubmitDownloadMock, addNotificationMock, error);
-    expect(clearSubmitDownloadMock).toBeCalled();
-    expect(addNotificationMock).toBeCalledWith({
+    expect(clearSubmitDownloadMock).toHaveBeenCalled();
+    expect(addNotificationMock).toHaveBeenCalledWith({
       label: error.label,
       id: 'anomaly-alert-id',
     });
@@ -102,8 +102,8 @@ describe('onError', () => {
   it('Should called addNotificationMock with null error', () => {
     const error = null;
     onError(clearSubmitDownloadMock, addNotificationMock, error);
-    expect(clearSubmitDownloadMock).toBeCalled();
-    expect(addNotificationMock).toBeCalledWith({
+    expect(clearSubmitDownloadMock).toHaveBeenCalled();
+    expect(addNotificationMock).toHaveBeenCalledWith({
       label: 'Erreur de téléchargement',
       id: 'anomaly-alert-id',
     });

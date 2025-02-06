@@ -167,7 +167,7 @@ describe('setOnChangePaging', () => {
         page: 2,
       },
     });
-    expect(setStateFormPagingMock).toBeCalled();
+    expect(setStateFormPagingMock).toHaveBeenCalled();
   });
 });
 

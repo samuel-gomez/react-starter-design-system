@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { setPositionInit, setToggleMenu, computeMenuItems, useMenuVisible } from '../Menu.container';
+import { computeMenuItems, setPositionInit, setToggleMenu, useMenuVisible } from '../Menu.container';
 import { CLASS_BODY_MENU_OPEN } from '../constants';
 import { MENU_ITEMS_MOCK, expectedMock } from './Menu.mock';
 
@@ -65,13 +65,13 @@ describe('setToggleMenu', () => {
 
   it('Should setIsMenuVisible to be called with true and toggleClass to be called with "af-menu-open" when isVisible = false', () => {
     setToggleMenu({ setIsMenuVisible: setIsMenuVisibleMock, isVisible: false, documentObj: documentMock });
-    expect(setIsMenuVisibleMock).toBeCalledWith(true);
-    expect(toggleClassMock).toBeCalledWith(CLASS_BODY_MENU_OPEN);
+    expect(setIsMenuVisibleMock).toHaveBeenCalledWith(true);
+    expect(toggleClassMock).toHaveBeenCalledWith(CLASS_BODY_MENU_OPEN);
   });
 
   it('Should setIsMenuVisible to be called with false when isVisible = true', () => {
     setToggleMenu({ setIsMenuVisible: setIsMenuVisibleMock, isVisible: true });
-    expect(setIsMenuVisibleMock).toBeCalledWith(false);
+    expect(setIsMenuVisibleMock).toHaveBeenCalledWith(false);
   });
 });
 

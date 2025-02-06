@@ -39,7 +39,7 @@ export const computeDataError = async (response: Response, setResponseErrorFn = 
   try {
     const data = await response.json();
     return setResponseErrorFn({ response: { ...data, status: response.status } });
-  } catch (error) {
+  } catch {
     return setResponseErrorFn({ response: { anomaly: { label: STATUS_HTTP_MESSAGES[response.status] }, status: response.status } });
   }
 };

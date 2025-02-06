@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import isEmpty from 'lodash/isEmpty';
 import { type AriaAttributes } from 'react';
 import { MenuItem } from './MenuItem';
@@ -10,7 +9,6 @@ export const createMenu = (menuItems: TMenuItemBase[], onClick?: (event: React.M
   ));
 
 const MenuItemEnhanced = ({
-  authorized,
   url,
   label,
   classModifier,

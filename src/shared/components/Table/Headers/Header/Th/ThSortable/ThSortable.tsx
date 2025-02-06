@@ -9,7 +9,7 @@ export type TThSortable = ComponentPropsWithoutRef<typeof TableTk.Th> & {
 };
 
 const ThSortable = ({ className, children, sort, order, ...thSortableProps }: TThSortable) => (
-  <TableTk.Th role="button" onClick={sort} {...thSortableProps}>
+  <TableTk.Th className={className} role="button" onClick={sort} {...thSortableProps}>
     {children}
     <SortingIcon order={order} />
   </TableTk.Th>

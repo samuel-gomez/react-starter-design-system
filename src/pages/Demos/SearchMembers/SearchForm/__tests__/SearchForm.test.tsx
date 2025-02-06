@@ -69,6 +69,6 @@ describe('onChangeValue', () => {
       ref: createRef().current,
     } as ControllerRenderProps<FormValues, 'name'>;
     onChangeValue(field)({ value: 'test' });
-    expect(onChange).toBeCalledWith('test');
+    expect(onChange).toHaveBeenCalledWith('test');
   });
 });

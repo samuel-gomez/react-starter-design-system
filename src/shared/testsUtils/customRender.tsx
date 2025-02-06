@@ -35,8 +35,7 @@ const MockProviders =
       retry: false,
       ...(queryData ? { queryFn: () => queryData } : {}),
     };
-
-    return (
+    const Component = () => (
       <EnvironmentProvider useEnvFn={useEnvFn}>
         <FetchProvider>
           <QueryProvider queriesOptions={queriesOptions}>
@@ -47,6 +46,9 @@ const MockProviders =
         </FetchProvider>
       </EnvironmentProvider>
     );
+
+    Component.displayName = 'MockProviders';
+    return Component();
   };
 
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>, testMock: TMockProvider = { role: '' }) =>

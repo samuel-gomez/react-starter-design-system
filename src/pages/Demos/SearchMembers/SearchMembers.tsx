@@ -32,7 +32,7 @@ export const DownloadLinkEnhanced = ({
   <DownloadLink path={getDownloadPathFn(idKey)} fileName={setFileNameFn({ memberId: idKey, name: `${firstname}-${lastname}` })} />
 );
 
-type TSearchMembers = TLayoutPage &
+export type TSearchMembers = TLayoutPage &
   Omit<TReturnUseSearchMembers, 'isLoading'> & {
     loaderMode: TLoader['mode'];
     submitFormSearchMembers: TReturnUseFormSearchMembers['submitFormSearchMembers'];

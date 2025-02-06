@@ -1,7 +1,7 @@
-import { renderHook, act } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { SERVICE_NAME } from '../constants';
 import { DownloadLinkEnhanced } from '../SearchMembers';
-import { computeInfos, useSearchMembers, computeSuccess, useFormSearchMembers, computeDataQuery } from '../SearchMembers.hook';
+import { computeDataQuery, computeInfos, computeSuccess, useFormSearchMembers, useSearchMembers } from '../SearchMembers.hook';
 
 const expectedDataCompute = {
   anomaly: {
@@ -172,7 +172,7 @@ describe('computeDataQuery', () => {
   const computeSuccessFn = vi.fn();
   it('Should called computeSuccess when computeDataQuery is executing', () => {
     computeDataQuery(data, computeSuccessFn);
-    expect(computeSuccessFn).toBeCalledWith(data);
+    expect(computeSuccessFn).toHaveBeenCalledWith(data);
   });
   it('Should return data results computed without computeSuccess', () => {
     const result = computeDataQuery(data);

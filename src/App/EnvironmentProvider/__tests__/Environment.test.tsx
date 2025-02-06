@@ -1,7 +1,7 @@
-import { useContext } from 'react';
 import { render, renderHook } from '@testing-library/react';
-import EnvironmentProvider, { useEnv, EnvironmentContext, fetchEnv, getFileEnv } from '..';
+import { useContext } from 'react';
 import type { TEnvironment } from '..';
+import EnvironmentProvider, { EnvironmentContext, fetchEnv, getFileEnv, useEnv } from '..';
 
 const BaseWithEnvironment = ({ environment }: { environment?: TEnvironment | null }) => <div>{environment?.apiUrl?.base}</div>;
 
@@ -89,13 +89,13 @@ describe('fetchEnv', () => {
     fetchMock.mockResolvedValue(resolvedValue);
     await fetchEnv({ setEnvState: setEnvStateMock, signal: {} as AbortSignal, fetchFn: fetchMock, getFileEnvFn: getFileEnvFnMock });
 
-    expect(getFileEnvFnMock).toBeCalled();
-    expect(fetchMock).toBeCalledWith('/filename', { signal: {} });
+    expect(getFileEnvFnMock).toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenCalledWith('/filename', { signal: {} });
   });
   it('Should setEnvState called when call fetchEnv', async () => {
     fetchMock.mockResolvedValue(resolvedValue);
     await fetchEnv({ setEnvState: setEnvStateMock, signal: {} as AbortSignal, fetchFn: fetchMock });
-    expect(setEnvStateMock).toBeCalled();
+    expect(setEnvStateMock).toHaveBeenCalled();
   });
 
   it('Should setEnvState called when call fetchEnv', async () => {

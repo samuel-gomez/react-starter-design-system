@@ -29,7 +29,7 @@ describe('setFetchCustom', () => {
     fetchMock.mockResolvedValue(resolvedValue);
     const result = await setFetchCustom({ apiUrl: apiMock, fetchAuthConfig: fetchConfigMock, fetchFn: fetchMock })(queryKey);
 
-    expect(fetchMock).toBeCalledWith('http://localhost:5001/api/members', {
+    expect(fetchMock).toHaveBeenCalledWith('http://localhost:5001/api/members', {
       headers: {
         'Content-Type': 'text/plain',
         body: 'body',
@@ -85,8 +85,8 @@ describe('buildResponse', () => {
     const responseMock504 = { ...responseMock, status: 504 };
     try {
       await buildResponse(responseMock504, { blob: false, text: false }, computeDataErrorFn);
-    } catch (error) {
-      expect(computeDataErrorFn).toBeCalled();
+    } catch {
+      expect(computeDataErrorFn).toHaveBeenCalled();
     }
   });
 
@@ -94,8 +94,8 @@ describe('buildResponse', () => {
     const responseMock500 = { ...responseMock, status: 500 };
     try {
       await buildResponse(responseMock500, { blob: false, text: false }, computeDataErrorFn);
-    } catch (error) {
-      expect(computeDataErrorFn).toBeCalled();
+    } catch {
+      expect(computeDataErrorFn).toHaveBeenCalled();
     }
   });
 
@@ -103,8 +103,8 @@ describe('buildResponse', () => {
     const responseMock400 = { ...responseMock, status: 200 };
     try {
       await buildResponse(responseMock400, { blob: false, text: false }, computeDataErrorFn);
-    } catch (error) {
-      expect(computeDataErrorFn).toBeCalled();
+    } catch {
+      expect(computeDataErrorFn).toHaveBeenCalled();
     }
   });
 
@@ -129,8 +129,8 @@ describe('computeDataError', () => {
   it('Should called setResponseFn without setResponseFn', async () => {
     try {
       await computeDataError(responseMockError);
-      expect(setResponseFn).toBeCalledWith({ label: 'test' });
-    } catch (error) {
+      expect(setResponseFn).toHaveBeenCalledWith({ label: 'test' });
+    } catch {
       /* empty */
     }
   });
@@ -138,8 +138,8 @@ describe('computeDataError', () => {
   it('Should called setResponseFn', async () => {
     try {
       await computeDataError(responseMockError, setResponseFn);
-      expect(setResponseFn).toBeCalledWith({ label: 'test' });
-    } catch (error) {
+      expect(setResponseFn).toHaveBeenCalledWith({ label: 'test' });
+    } catch {
       /* empty */
     }
   });
@@ -149,14 +149,14 @@ describe('computeDataError', () => {
       ...responseMock,
       status: 500,
       json: async () => {
-        throw new Error('');
+        throw new Error('my error');
       },
     };
 
     try {
       await computeDataError(responseMockThrowError, setResponseFn);
-    } catch (error) {
-      expect(setResponseFn).toBeCalledWith({
+    } catch {
+      expect(setResponseFn).toHaveBeenCalledWith({
         response: { anomaly: { label: STATUS_HTTP_MESSAGES[responseMockThrowError.status] }, status: responseMockThrowError.status },
       });
     }

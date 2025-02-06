@@ -1,6 +1,6 @@
 import { render } from 'shared/testsUtils/customRender';
-import { totals, oneMember } from './Members.mock';
 import MembersContainer from '../Members.container';
+import { oneMember, totals } from './Members.mock';
 
 describe('<MembersContainer />', () => {
   const MembersCmpt = vi.fn();
@@ -32,7 +32,7 @@ describe('<MembersContainer />', () => {
   `('Should call MembersCmpt with calculed props when useMembersFn return responseBody: $responseBody', ({ data, returnValue }) => {
     useMembersFn.mockReturnValue({ ...returnValue, isLoading: false });
     render(<MembersContainer MembersCmpt={MembersCmpt} useMembersFn={useMembersFn} />, {}, { responseBody: { totals, data } });
-    expect(MembersCmpt).toBeCalledWith(
+    expect(MembersCmpt).toHaveBeenCalledWith(
       {
         ...returnValue,
         loaderMode: 'none',

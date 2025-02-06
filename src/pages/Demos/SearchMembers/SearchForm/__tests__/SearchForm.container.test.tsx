@@ -26,9 +26,9 @@ describe('SearchFormContainer', () => {
         useFormFn={useFormFnMock}
       />,
     );
-    expect(setConfirmClassModifierFnMock).toBeCalled();
-    expect(setOnSubmitSearchFormFnMock).toBeCalled();
-    expect(SearchFormCmpt).toBeCalledWith(
+    expect(setConfirmClassModifierFnMock).toHaveBeenCalled();
+    expect(setOnSubmitSearchFormFnMock).toHaveBeenCalled();
+    expect(SearchFormCmpt).toHaveBeenCalledWith(
       {
         className: 'af-filter-inline',
         confirmClassModifier: 'confirmClassModifier',
@@ -52,7 +52,7 @@ describe('setOnSubmitSearchForm', () => {
       },
     })();
 
-    expect(submitFormSearchMembersMock).toBeCalledWith({
+    expect(submitFormSearchMembersMock).toHaveBeenCalledWith({
       name: 'valuename',
     });
   });
