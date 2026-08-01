@@ -47,7 +47,7 @@
     "@testing-library/user-event": "14.6.1",
     "@types/downloadjs": "1.4.6",
     "@types/jest-axe": "3.5.9",
-    "@types/lodash": "4.17.15",
+    "@types/lodash": "4.17.25",
     "@types/node": "22.13.1",
     "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3",
